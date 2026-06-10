@@ -1,0 +1,15 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: storefront-website
+  description: The main storefront website application
+  tags:
+    - react
+    - frontend
+spec:
+  type: website
+  lifecycle: production
+  owner: group:frontend-team
+  system: payment-system
+  consumesApis:
+    - payment-api

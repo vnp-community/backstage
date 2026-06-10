@@ -1,0 +1,25 @@
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: payment-api
+  description: The Payment API for the payment service
+  tags:
+    - rest
+    - payments
+spec:
+  type: openapi
+  lifecycle: production
+  owner: group:backend-team
+  system: payment-system
+  definition: |
+    openapi: 3.0.0
+    info:
+      title: Payment API
+      version: 1.0.0
+    paths:
+      /pay:
+        post:
+          summary: Make a payment
+          responses:
+            '200':
+              description: OK

@@ -1,0 +1,51 @@
+app:
+  baseUrl: ${APP_BASE_URL}
+
+backend:
+  baseUrl: ${APP_BASE_URL}
+  listen:
+    port: 7007
+    host: 0.0.0.0
+  database:
+    client: pg
+    connection:
+      host: ${POSTGRES_HOST}
+      port: ${POSTGRES_PORT}
+      user: ${POSTGRES_USER}
+      password: ${POSTGRES_PASSWORD}
+
+proxy:
+  endpoints:
+    # Structurizr API proxy (on-premise hoặc Cloud)
+    /structurizr/api:
+      target: ${STRUCTURIZR_URL}/api
+      changeOrigin: true
+      pathRewrite:
+        ^/api/proxy/structurizr/api: ''
+      headers:
+        X-Authorization: 'Key ${STRUCTURIZR_API_KEY}'
+
+# Structurizr configuration for architecture documentation
+structurizr:
+  url: ${STRUCTURIZR_URL}
+  workspaces:
+    - id: ${STRUCTURIZR_WORKSPACE_ID}
+      apiKey: ${STRUCTURIZR_API_KEY}
+      apiSecret: ${STRUCTURIZR_API_SECRET}
+
+techdocs:
+  builder: 'external'
+  generator:
+    runIn: 'docker'
+  publisher:
+    type: 'googleGcs'
+    googleGcs:
+      bucketName: ${TECHDOCS_GCS_BUCKET_NAME}
+      credentials: ${GOOGLE_APPLICATION_CREDENTIALS}
+
+search:
+  collators:
+    tools:
+      schedule:
+        frequency: { hours: 24 }
+        timeout: { minutes: 5 }

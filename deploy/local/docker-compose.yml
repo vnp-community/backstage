@@ -1,0 +1,43 @@
+services:
+  backstage:
+    image: backstage-local:latest
+    ports:
+      - "7007:7007"
+    environment:
+      - POSTGRES_HOST=postgres
+      - POSTGRES_PORT=5432
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - NODE_ENV=production
+      - AUTH_GITHUB_CLIENT_ID=disabled
+      - AUTH_GITHUB_CLIENT_SECRET=disabled
+      - AUTH_GOOGLE_CLIENT_ID=disabled
+      - AUTH_GOOGLE_CLIENT_SECRET=disabled
+    command: ["node", "packages/backend", "--config", "app-config.yaml", "--config", "app-config.production.yaml"]
+    volumes:
+      - ./app-config.yaml:/app/app-config.yaml:ro
+      - ./app-config.production.yaml:/app/app-config.production.yaml:ro
+    depends_on:
+      postgres:
+        condition: service_healthy
+    restart: unless-stopped
+
+  postgres:
+    image: postgres:14.15-alpine
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=backstage
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+volumes:
+  pgdata:

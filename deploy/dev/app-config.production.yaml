@@ -1,0 +1,49 @@
+app:
+  baseUrl: ${APP_BASE_URL}
+
+backend:
+  baseUrl: ${APP_BASE_URL}
+  listen:
+    port: 7007
+    host: 0.0.0.0
+  cors:
+    origin: ${APP_BASE_URL}
+    methods: [GET, HEAD, PATCH, POST, PUT, DELETE]
+    credentials: true
+  database:
+    client: pg
+    connection:
+      host: ${POSTGRES_HOST}
+      port: ${POSTGRES_PORT}
+      user: ${POSTGRES_USER}
+      password: ${POSTGRES_PASSWORD}
+
+proxy:
+  endpoints:
+    # Proxy đến Structurizr qua internal Docker network (http://structurizr:8080)
+    # STRUCTURIZR_URL được set trong docker-compose.yml = http://structurizr:8080
+    /structurizr/api:
+      target: ${STRUCTURIZR_URL}/api
+      changeOrigin: true
+      pathRewrite:
+        ^/api/proxy/structurizr/api: ''
+      headers:
+        X-Authorization: 'Key ${STRUCTURIZR_API_KEY}'
+
+# Structurizr: frontend dùng STRUCTURIZR_PUBLIC_URL để embed diagrams trong browser
+structurizr:
+  url: ${STRUCTURIZR_PUBLIC_URL}
+  workspaces:
+    - id: ${STRUCTURIZR_WORKSPACE_ID}
+      apiKey: ${STRUCTURIZR_API_KEY}
+      apiSecret: ${STRUCTURIZR_API_SECRET}
+
+techdocs:
+  builder: 'local'
+  generator:
+    runIn: 'docker'
+  publisher:
+    type: 'local'
+
+auth:
+  environment: production

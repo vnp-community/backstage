@@ -1,0 +1,83 @@
+app:
+  title: Backstage
+  baseUrl: http://localhost:7007
+  packages: all
+  packageName: example-app
+
+organization:
+  name: My Organization
+
+backend:
+  baseUrl: http://localhost:7007
+  auth:
+    dangerouslyDisableDefaultAuthPolicy: true
+  listen:
+    port: 7007
+  csp:
+    connect-src: ["'self'", 'http:', 'https:']
+  cors:
+    origin: http://localhost:7007
+    methods: [GET, HEAD, PATCH, POST, PUT, DELETE]
+    credentials: true
+  database:
+    client: pg
+    connection:
+      host: ${POSTGRES_HOST}
+      port: ${POSTGRES_PORT}
+      user: ${POSTGRES_USER}
+      password: ${POSTGRES_PASSWORD}
+      database: backstage
+
+integrations: {}
+
+proxy:
+  endpoints:
+    # Structurizr Cloud API proxy
+    /structurizr/api:
+      target: ${STRUCTURIZR_URL}/api
+      changeOrigin: true
+      pathRewrite:
+        ^/api/proxy/structurizr/api: ''
+      headers:
+        X-Authorization: 'Key ${STRUCTURIZR_API_KEY}'
+
+techdocs:
+  builder: 'local'
+  generator:
+    runIn: 'docker'
+  publisher:
+    type: 'local'
+
+# Structurizr configuration for architecture documentation
+structurizr:
+  url: ${STRUCTURIZR_URL}
+  workspaces:
+    - id: ${STRUCTURIZR_WORKSPACE_ID}
+      apiKey: ${STRUCTURIZR_API_KEY}
+      apiSecret: ${STRUCTURIZR_API_SECRET}
+
+auth:
+  environment: development
+  providers:
+    guest:
+      dangerouslyAllowOutsideDevelopment: true
+
+catalog:
+  import:
+    entityFilename: catalog-info.yaml
+    pullRequestBranchName: backstage-integration
+  rules:
+    - allow: [Component, System, API, Resource, Location, Domain]
+  locations:
+    - type: file
+      target: ../../examples/entities.yaml
+    - type: file
+      target: ../../examples/template/template.yaml
+      rules:
+        - allow: [Template]
+    - type: file
+      target: ../../examples/org.yaml
+      rules:
+        - allow: [User, Group]
+
+scaffolder: {}

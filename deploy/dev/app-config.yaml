@@ -1,0 +1,75 @@
+app:
+  title: Backstage
+  baseUrl: http://localhost:7007
+  packages: all
+  packageName: example-app
+
+organization:
+  name: My Organization
+
+backend:
+  baseUrl: http://localhost:7007
+  auth:
+    dangerouslyDisableDefaultAuthPolicy: true
+  listen:
+    port: 7007
+  csp:
+    connect-src: ["'self'", 'http:', 'https:']
+  cors:
+    origin: http://localhost:7007
+    methods: [GET, HEAD, PATCH, POST, PUT, DELETE]
+    credentials: true
+  database:
+    client: pg
+    connection:
+      host: ${POSTGRES_HOST}
+      port: ${POSTGRES_PORT}
+      user: ${POSTGRES_USER}
+      password: ${POSTGRES_PASSWORD}
+      database: backstage
+
+integrations: {}
+
+proxy:
+  endpoints:
+    # Proxy API calls đến Structurizr on-premise (qua internal Docker network)
+    /structurizr/api:
+      target: ${STRUCTURIZR_URL}/api
+      changeOrigin: true
+      pathRewrite:
+        ^/api/proxy/structurizr/api: ''
+      headers:
+        X-Authorization: 'Key ${STRUCTURIZR_API_KEY}'
+
+techdocs:
+  builder: 'local'
+  generator:
+    runIn: 'docker'
+  publisher:
+    type: 'local'
+
+# Structurizr on-premise configuration
+structurizr:
+  # STRUCTURIZR_URL = internal Docker URL (http://structurizr:8080)
+  # dùng cho proxy backend — sẽ được override bởi public URL trong production config
+  url: ${STRUCTURIZR_URL}
+  workspaces:
+    - id: ${STRUCTURIZR_WORKSPACE_ID}
+      apiKey: ${STRUCTURIZR_API_KEY}
+      apiSecret: ${STRUCTURIZR_API_SECRET}
+
+auth:
+  environment: production
+  providers:
+    guest:
+      dangerouslyAllowOutsideDevelopment: true
+
+catalog:
+  import:
+    entityFilename: catalog-info.yaml
+    pullRequestBranchName: backstage-integration
+  rules:
+    - allow: [Component, System, API, Resource, Location, Domain, User, Group]
+  locations: []
+
+scaffolder: {}

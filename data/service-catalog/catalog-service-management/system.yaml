@@ -1,0 +1,8 @@
+apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: payment-system
+  description: System for processing payments
+spec:
+  owner: group:admin
+  domain: e-commerce

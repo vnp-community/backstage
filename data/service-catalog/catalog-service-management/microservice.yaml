@@ -1,0 +1,18 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: payment-service
+  description: Microservice that handles payment transactions.
+  tags:
+    - java
+    - spring-boot
+  links:
+    - url: https://github.com/example/payment-service
+      title: Source Code
+spec:
+  type: service
+  lifecycle: production
+  owner: group:backend-team
+  system: payment-system
+  providesApis:
+    - payment-api

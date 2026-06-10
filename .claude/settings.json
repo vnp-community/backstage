@@ -1,0 +1,13 @@
+{
+    "env": {
+        "ANTHROPIC_BASE_URL": "https://b8.openledger.vn",
+        "ANTHROPIC_AUTH_TOKEN": "sk-bf-f4b9ac88-b0c4-4229-9939-ffbda72bf372",
+        "CLAUDE_CODE_DISABLE_1M_CONTEXT": "1",
+        "CLAUDE_CODE_DISABLE_EXPERIMENTAL_BETAS": "1",
+        "headers": {
+            "x-clproxy-enabled": "false"
+        },
+        "defaultModel": "Qwen3-Coder-Next",
+        "model": "Qwen3-Coder-Next"
+    }
+}

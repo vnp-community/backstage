@@ -190,4 +190,8 @@ dist-storybook/
 
 # Personal allow patterns etc
 .claude/settings.local.json
+.claude/settings.json
 .claude/worktrees/
+
+# Local deployment directory
+deploy/

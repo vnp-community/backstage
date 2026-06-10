@@ -244,6 +244,8 @@ nav:
       - ADR012 - Use Luxon Locale: 'architecture-decisions/adr012-use-luxon-locale-and-date-presets.md'
       - ADR013 - Use node-fetch: 'architecture-decisions/adr013-use-node-fetch.md'
       - ADR014 - Use fetch: 'architecture-decisions/adr014-use-fetch.md'
+  - Developer Guide:
+      - Hướng dẫn sử dụng: 'developer-guide.md'
   - FAQ:
       - Overview: 'faq/index.md'
       - Product FAQ: 'faq/product.md'

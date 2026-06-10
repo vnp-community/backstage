@@ -1,0 +1,84 @@
+# Tên project — tất cả resources sẽ có prefix "backstage_"
+# Tránh xung đột với các projects khác trên server 172.20.2.41:
+#   bifrost, bytebase, production, vnp-dev
+name: backstage
+
+services:
+  backstage:
+    image: ${BACKSTAGE_IMAGE:-backstage:latest}
+    container_name: bs-app
+    ports:
+      # SSL termination xử lý bởi nginx gateway trên 172.20.2.16
+      # Gateway proxy: b14.openledger.vn → 172.20.2.41:7007
+      - "7007:7007"
+    environment:
+      - POSTGRES_HOST=postgres
+      - POSTGRES_PORT=5432
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - APP_BASE_URL=${APP_BASE_URL}
+      - NODE_ENV=production
+      - AUTH_GITHUB_CLIENT_ID=${AUTH_GITHUB_CLIENT_ID:-disabled}
+      - AUTH_GITHUB_CLIENT_SECRET=${AUTH_GITHUB_CLIENT_SECRET:-disabled}
+      - AUTH_GOOGLE_CLIENT_ID=${AUTH_GOOGLE_CLIENT_ID:-disabled}
+      - AUTH_GOOGLE_CLIENT_SECRET=${AUTH_GOOGLE_CLIENT_SECRET:-disabled}
+      # Structurizr internal URL (backend proxy dùng service name Docker)
+      - STRUCTURIZR_URL=http://structurizr:8080
+      # Structurizr public URL cho browser (iframe embedding)
+      - STRUCTURIZR_PUBLIC_URL=${STRUCTURIZR_PUBLIC_URL}
+      - STRUCTURIZR_WORKSPACE_ID=${STRUCTURIZR_WORKSPACE_ID}
+      - STRUCTURIZR_API_KEY=${STRUCTURIZR_API_KEY}
+      - STRUCTURIZR_API_SECRET=${STRUCTURIZR_API_SECRET}
+    command: ["node", "packages/backend", "--config", "app-config.yaml", "--config", "app-config.production.yaml"]
+    volumes:
+      - ./app-config.yaml:/app/app-config.yaml:ro
+      - ./app-config.production.yaml:/app/app-config.production.yaml:ro
+    depends_on:
+      postgres:
+        condition: service_healthy
+    restart: unless-stopped
+    networks:
+      - backstage_net
+
+  postgres:
+    image: postgres:14.15-alpine
+    container_name: bs-postgres
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB=backstage
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    # KHÔNG map port ra ngoài:
+    #   127.0.0.1:5432  → bifrost_postgres (đã chiếm)
+    #   127.0.0.1:15432 → bb-dev-postgres / bytebase (đã chiếm)
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-postgres}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+    networks:
+      - backstage_net
+
+  structurizr:
+    image: structurizr/structurizr:latest
+    container_name: bs-structurizr
+    command: server
+    volumes:
+      - structurizr_data:/usr/local/structurizr
+    ports:
+      # Truy cập trực tiếp qua http://172.20.2.41:8080 (admin/internal)
+      # Backstage backend proxy dùng internal URL http://structurizr:8080
+      - "8080:8080"
+    restart: unless-stopped
+    networks:
+      - backstage_net
+
+networks:
+  backstage_net:
+    name: backstage_net
+
+volumes:
+  pgdata:
+  structurizr_data:
