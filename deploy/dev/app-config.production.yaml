@@ -18,6 +18,11 @@ backend:
       user: ${POSTGRES_USER}
       password: ${POSTGRES_PASSWORD}
 
+integrations:
+  github:
+    - host: github.com
+      token: ${GITHUB_TOKEN}
+
 proxy:
   endpoints:
     # Proxy đến Structurizr qua internal Docker network (http://structurizr:8080)
@@ -47,3 +52,10 @@ techdocs:
 
 auth:
   environment: production
+  providers:
+    github:
+      production:
+        clientId: ${AUTH_GITHUB_CLIENT_ID}
+        clientSecret: ${AUTH_GITHUB_CLIENT_SECRET}
+        # callbackUrl sẽ tự động được tạo từ APP_BASE_URL
+        # dạng: ${APP_BASE_URL}/api/auth/github/handler/frame

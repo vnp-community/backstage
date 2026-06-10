@@ -83,8 +83,8 @@ check-ports:
 # Build + transfer image
 # ---------------------------------------------------------------
 push-image:
-	@echo ">>> Build image backstage:latest..."
-	docker build -t backstage:latest -f ../../packages/backend/Dockerfile ../../
+	@echo ">>> Build image backstage:latest for linux/amd64..."
+	docker buildx build --platform linux/amd64 -t backstage:latest -f ../../packages/backend/Dockerfile ../../ --load
 	@echo ">>> Pipe image len $(SERVER)..."
 	docker save backstage:latest | ssh $(REMOTE) "docker load"
 	@echo ">>> Done. Chay 'make restart' de ap dung image moi."

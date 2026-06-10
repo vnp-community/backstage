@@ -28,7 +28,10 @@ backend:
       password: ${POSTGRES_PASSWORD}
       database: backstage
 
-integrations: {}
+integrations:
+  github:
+    - host: github.com
+      token: ${GITHUB_TOKEN}
 
 proxy:
   endpoints:
@@ -63,6 +66,10 @@ auth:
   providers:
     guest:
       dangerouslyAllowOutsideDevelopment: true
+    github:
+      production:
+        clientId: ${AUTH_GITHUB_CLIENT_ID}
+        clientSecret: ${AUTH_GITHUB_CLIENT_SECRET}
 
 catalog:
   import:

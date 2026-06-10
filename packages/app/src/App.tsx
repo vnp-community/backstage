@@ -26,7 +26,7 @@ import {
   type HomePageLayoutProps,
 } from '@backstage/plugin-home-react/alpha';
 import { Fragment } from 'react';
-import { Content, Header, Page } from '@backstage/core-components';
+import { Content, Header, Page, SignInPage } from '@backstage/core-components';
 import {
   CustomHomepageGrid,
   WelcomeTitle,
@@ -53,6 +53,11 @@ import { appModuleNav } from './modules/appModuleNav';
 import { appModuleScaffolder } from './modules/appModuleScaffolder';
 import catalogPlugin from '@backstage/plugin-catalog/alpha';
 import InfoIcon from '@material-ui/icons/Info';
+import {
+  SignInPageBlueprint,
+  type SignInPageProps,
+} from '@backstage/plugin-app-react';
+import { githubAuthApiRef } from '@backstage/core-plugin-api';
 
 /**
  * TechDocs does support the new frontend system so this conversion is not
@@ -124,6 +129,31 @@ const notFoundErrorPageModule = createFrontendModule({
   extensions: [notFoundErrorPage],
 });
 
+// GitHub Sign-in page module — hiển thị trang đăng nhập GitHub
+// "Sign-in to allow Backstage access to GitHub APIs and identities."
+const githubSignInModule = createFrontendModule({
+  pluginId: 'app',
+  extensions: [
+    SignInPageBlueprint.make({
+      params: {
+        loader: async () => (props: SignInPageProps) =>
+          (
+            <SignInPage
+              {...props}
+              provider={{
+                id: 'github-auth-provider',
+                title: 'GitHub',
+                message:
+                  'Sign-in to allow Backstage access to GitHub APIs and identities.',
+                apiRef: githubAuthApiRef,
+              }}
+            />
+          ),
+      },
+    }),
+  ],
+});
+
 const collectedLegacyPlugins = convertLegacyAppRoot(
   <FlatRoutes>
     <Route path="/catalog-import" element={<CatalogImportPage />} />
@@ -143,6 +173,7 @@ const app = createApp({
     appModuleNav,
     appModuleScaffolder,
     customHomePageModule,
+    githubSignInModule,
     ...collectedLegacyPlugins,
   ],
   advanced: {
