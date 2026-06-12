@@ -1,0 +1,21 @@
+site_name: 'Security Handbook'
+site_description: 'Cẩm nang bảo mật của tổ chức'
+repo_url: https://github.com/backstage/backstage
+edit_uri: ''
+
+nav:
+  - Giới thiệu: index.md
+  - Chính sách bảo mật:
+      - Tổng quan: policies/overview.md
+      - Access Control: policies/access-control.md
+      - Data Classification: policies/data-classification.md
+  - Secure Development:
+      - OWASP Top 10: secure-dev/owasp-top10.md
+      - Secrets Management: secure-dev/secrets-management.md
+      - Dependency Scanning: secure-dev/dependency-scanning.md
+  - Incident Response:
+      - Quy trình: incident/process.md
+      - Playbook: incident/playbook.md
+
+plugins:
+  - techdocs-core

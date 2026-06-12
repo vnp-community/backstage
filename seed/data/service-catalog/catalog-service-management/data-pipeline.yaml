@@ -1,0 +1,15 @@
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: sales-data-pipeline
+  description: Data pipeline that aggregates daily sales
+  tags:
+    - airflow
+    - python
+    - spark
+spec:
+  type: data-pipeline
+  owner: group:data-team
+  system: payment-system
+  dependsOn:
+    - component:payment-service

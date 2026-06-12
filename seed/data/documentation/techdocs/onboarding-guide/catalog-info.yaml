@@ -1,0 +1,24 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: developer-onboarding
+  title: Developer Onboarding Guide
+  description: >
+    Hướng dẫn onboarding cho kỹ sư mới — thiết lập môi trường, quy trình
+    làm việc, văn hóa engineering và các công cụ nội bộ cần biết.
+  tags:
+    - onboarding
+    - getting-started
+    - new-hire
+    - developer-experience
+  annotations:
+    backstage.io/techdocs-ref: dir:.
+  links:
+    - url: https://backstage.io
+      title: Backstage Developer Portal
+      icon: home
+spec:
+  type: documentation
+  lifecycle: production
+  owner: group:dx-team
+  system: developer-platform

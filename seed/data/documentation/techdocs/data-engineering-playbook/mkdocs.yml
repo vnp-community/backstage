@@ -1,0 +1,26 @@
+site_name: 'Data Engineering Playbook'
+site_description: 'Playbook cho Data Engineering và Analytics'
+repo_url: https://github.com/backstage/backstage
+edit_uri: ''
+
+nav:
+  - Giới thiệu: index.md
+  - Data Architecture:
+      - Data Lake: architecture/data-lake.md
+      - Data Warehouse: architecture/data-warehouse.md
+      - Lakehouse Pattern: architecture/lakehouse.md
+  - Data Pipelines:
+      - Batch Processing: pipelines/batch.md
+      - Stream Processing: pipelines/streaming.md
+      - Pipeline Testing: pipelines/testing.md
+  - Data Governance:
+      - Data Catalog: governance/catalog.md
+      - Data Quality: governance/quality.md
+      - Lineage: governance/lineage.md
+  - Tools & Frameworks:
+      - Apache Spark: tools/spark.md
+      - dbt: tools/dbt.md
+      - Airflow: tools/airflow.md
+
+plugins:
+  - techdocs-core

@@ -1,0 +1,26 @@
+apiVersion: backstage.io/v1alpha1
+kind: Location
+metadata:
+  name: documentation-index
+  description: >
+    Location index for all TechDocs documentation components.
+    Thư mục trung tâm quản lý tài liệu kỹ thuật của tổ chức.
+  tags:
+    - documentation
+    - techdocs
+spec:
+  targets:
+    # Platform Engineering Guide
+    - ./techdocs/platform-engineering/catalog-info.yaml
+
+    # Security Handbook
+    - ./techdocs/security-handbook/catalog-info.yaml
+
+    # API Design Guide
+    - ./techdocs/api-design-guide/catalog-info.yaml
+
+    # Data Engineering Playbook
+    - ./techdocs/data-engineering-playbook/catalog-info.yaml
+
+    # Developer Onboarding Guide
+    - ./techdocs/onboarding-guide/catalog-info.yaml

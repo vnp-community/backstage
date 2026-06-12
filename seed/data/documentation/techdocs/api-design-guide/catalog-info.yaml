@@ -1,0 +1,25 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: api-design-guide
+  title: API Design Guide
+  description: >
+    Hướng dẫn thiết kế API chuẩn của tổ chức — bao gồm RESTful API,
+    GraphQL, gRPC, và các nguyên tắc API-first development.
+  tags:
+    - api
+    - rest
+    - graphql
+    - grpc
+    - design
+  annotations:
+    backstage.io/techdocs-ref: dir:.
+  links:
+    - url: https://swagger.io/specification/
+      title: OpenAPI Specification
+      icon: api
+spec:
+  type: documentation
+  lifecycle: production
+  owner: group:architecture-team
+  system: developer-platform

@@ -1,0 +1,14 @@
+apiVersion: backstage.io/v1alpha1
+kind: Location
+metadata:
+  name: catalog-service-management
+  description: Service catalog for catalog-service-management
+spec:
+  targets:
+    - ./api.yaml
+    - ./data-pipeline.yaml
+    - ./domain.yaml
+    - ./library.yaml
+    - ./microservice.yaml
+    - ./system.yaml
+    - ./website.yaml

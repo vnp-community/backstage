@@ -1,0 +1,25 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: data-engineering-playbook
+  title: Data Engineering Playbook
+  description: >
+    Playbook cho Data Engineering — bao gồm data pipeline, data lake,
+    data warehouse, và các best practice xử lý dữ liệu quy mô lớn.
+  tags:
+    - data
+    - data-engineering
+    - pipeline
+    - analytics
+    - spark
+  annotations:
+    backstage.io/techdocs-ref: dir:.
+  links:
+    - url: https://spark.apache.org/docs/latest/
+      title: Apache Spark Docs
+      icon: storage
+spec:
+  type: documentation
+  lifecycle: production
+  owner: group:data-team
+  system: data-platform

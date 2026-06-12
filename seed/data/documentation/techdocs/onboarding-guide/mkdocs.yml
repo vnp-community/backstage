@@ -1,0 +1,25 @@
+site_name: 'Developer Onboarding Guide'
+site_description: 'Hướng dẫn onboarding cho kỹ sư mới'
+repo_url: https://github.com/backstage/backstage
+edit_uri: ''
+
+nav:
+  - Chào mừng: index.md
+  - Tuần đầu tiên:
+      - Cài đặt môi trường: week1/setup.md
+      - Công cụ cần biết: week1/tools.md
+      - First PR: week1/first-pr.md
+  - Quy trình làm việc:
+      - Git Workflow: process/git-workflow.md
+      - Code Review: process/code-review.md
+      - Testing Standards: process/testing.md
+  - Văn hóa Engineering:
+      - Engineering Principles: culture/principles.md
+      - Communication: culture/communication.md
+      - Blameless Culture: culture/blameless.md
+  - Tài nguyên:
+      - Useful Links: resources/links.md
+      - FAQ: resources/faq.md
+
+plugins:
+  - techdocs-core

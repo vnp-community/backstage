@@ -1,0 +1,21 @@
+site_name: 'Platform Engineering Guide'
+site_description: 'Hướng dẫn Platform Engineering cho tổ chức'
+repo_url: https://github.com/backstage/backstage
+edit_uri: ''
+
+nav:
+  - Giới thiệu: index.md
+  - Kiến trúc:
+      - Tổng quan: architecture/overview.md
+      - Golden Path: architecture/golden-path.md
+      - Internal Developer Platform: architecture/idp.md
+  - Hạ tầng:
+      - Kubernetes: infrastructure/kubernetes.md
+      - CI/CD Pipeline: infrastructure/cicd.md
+      - Observability: infrastructure/observability.md
+  - Runbooks:
+      - Incident Response: runbooks/incident-response.md
+      - Deployment: runbooks/deployment.md
+
+plugins:
+  - techdocs-core

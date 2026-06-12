@@ -1,0 +1,24 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: platform-engineering-docs
+  title: Platform Engineering Guide
+  description: >
+    Tài liệu hướng dẫn Platform Engineering — kiến trúc, vận hành và
+    phát triển nền tảng nội bộ của tổ chức.
+  tags:
+    - platform
+    - engineering
+    - devops
+    - infrastructure
+  annotations:
+    backstage.io/techdocs-ref: dir:.
+  links:
+    - url: https://platformengineering.org
+      title: Platform Engineering Community
+      icon: web
+spec:
+  type: documentation
+  lifecycle: production
+  owner: group:platform-team
+  system: developer-platform

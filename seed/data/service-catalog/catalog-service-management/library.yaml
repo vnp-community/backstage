@@ -1,0 +1,12 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: ui-components
+  description: Shared UI component library for the frontend
+  tags:
+    - react
+    - storybook
+spec:
+  type: library
+  lifecycle: production
+  owner: group:frontend-team

@@ -1,0 +1,24 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: security-handbook
+  title: Security Handbook
+  description: >
+    Cẩm nang bảo mật của tổ chức — bao gồm các chính sách, quy trình,
+    hướng dẫn phát triển bảo mật và ứng phó sự cố.
+  tags:
+    - security
+    - compliance
+    - policies
+    - devsecops
+  annotations:
+    backstage.io/techdocs-ref: dir:.
+  links:
+    - url: https://owasp.org
+      title: OWASP Top 10
+      icon: security
+spec:
+  type: documentation
+  lifecycle: production
+  owner: group:security-team
+  system: developer-platform

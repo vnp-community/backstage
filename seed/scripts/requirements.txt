@@ -1,0 +1,19 @@
+# Backstage Seed Scripts — Requirements
+#
+# Cài đặt:
+#   pip install -r requirements.txt
+#
+# Hoặc trong virtual environment:
+#   python -m venv venv
+#   source venv/bin/activate  (Linux/macOS)
+#   venv\Scripts\activate     (Windows)
+#   pip install -r requirements.txt
+
+# HTTP client với retry support
+requests>=2.31.0
+
+# YAML parsing
+PyYAML>=6.0.1
+
+# Rich terminal output (optional — cho màu sắc đẹp hơn)
+# rich>=13.0.0

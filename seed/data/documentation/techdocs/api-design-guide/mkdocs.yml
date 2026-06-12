@@ -1,0 +1,24 @@
+site_name: 'API Design Guide'
+site_description: 'Hướng dẫn thiết kế API chuẩn của tổ chức'
+repo_url: https://github.com/backstage/backstage
+edit_uri: ''
+
+nav:
+  - Giới thiệu: index.md
+  - RESTful API:
+      - Nguyên tắc thiết kế: rest/principles.md
+      - Versioning: rest/versioning.md
+      - Error Handling: rest/error-handling.md
+      - Pagination: rest/pagination.md
+  - GraphQL:
+      - Schema Design: graphql/schema-design.md
+      - Resolvers: graphql/resolvers.md
+  - gRPC:
+      - Proto Design: grpc/proto-design.md
+  - API Security:
+      - Authentication: security/authentication.md
+      - Rate Limiting: security/rate-limiting.md
+  - Tooling: tooling.md
+
+plugins:
+  - techdocs-core
