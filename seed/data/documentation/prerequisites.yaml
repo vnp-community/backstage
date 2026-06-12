@@ -1,0 +1,148 @@
+---
+# Prerequisites for documentation feature
+# Groups and Systems that documentation components depend on
+
+apiVersion: backstage.io/v1alpha1
+kind: Group
+metadata:
+  name: platform-team
+  title: Platform Engineering Team
+  description: Team phụ trách nền tảng kỹ thuật nội bộ — infrastructure, DevOps, và platform tools.
+  tags:
+    - platform
+    - engineering
+spec:
+  type: team
+  profile:
+    displayName: Platform Engineering Team
+  children: []
+
+---
+apiVersion: backstage.io/v1alpha1
+kind: Group
+metadata:
+  name: architecture-team
+  title: Architecture Team
+  description: Team kiến trúc hệ thống — API design, system design, và technical standards.
+  tags:
+    - architecture
+    - design
+spec:
+  type: team
+  profile:
+    displayName: Architecture Team
+  children: []
+
+---
+apiVersion: backstage.io/v1alpha1
+kind: Group
+metadata:
+  name: data-team
+  title: Data Engineering Team
+  description: Team kỹ thuật dữ liệu — data pipelines, analytics, và data infrastructure.
+  tags:
+    - data
+    - engineering
+spec:
+  type: team
+  profile:
+    displayName: Data Engineering Team
+  children: []
+
+---
+apiVersion: backstage.io/v1alpha1
+kind: Group
+metadata:
+  name: backend-team
+  title: Backend Team
+  description: Team phát triển backend services — APIs, microservices, và server-side logic.
+  tags:
+    - backend
+    - development
+spec:
+  type: team
+  profile:
+    displayName: Backend Team
+  children: []
+
+---
+apiVersion: backstage.io/v1alpha1
+kind: Group
+metadata:
+  name: frontend-team
+  title: Frontend Team
+  description: Team phát triển frontend — web applications, UI components, và user experience.
+  tags:
+    - frontend
+    - development
+spec:
+  type: team
+  profile:
+    displayName: Frontend Team
+  children: []
+
+---
+apiVersion: backstage.io/v1alpha1
+kind: Group
+metadata:
+  name: security-team
+  title: Security Team
+  description: Team bảo mật — security policies, compliance, và incident response.
+  tags:
+    - security
+    - compliance
+spec:
+  type: team
+  profile:
+    displayName: Security Team
+  children: []
+
+---
+apiVersion: backstage.io/v1alpha1
+kind: Group
+metadata:
+  name: dx-team
+  title: Developer Experience Team
+  description: Team developer experience — onboarding, tools, và developer productivity.
+  tags:
+    - dx
+    - developer-experience
+spec:
+  type: team
+  profile:
+    displayName: Developer Experience Team
+  children: []
+
+---
+apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: developer-platform
+  title: Developer Platform
+  description: >
+    Nền tảng phát triển nội bộ của tổ chức — bao gồm công cụ,
+    tài liệu, templates, và hạ tầng hỗ trợ developer experience.
+  tags:
+    - platform
+    - internal
+    - developer-experience
+spec:
+  owner: group:platform-team
+  domain: e-commerce
+
+---
+apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: data-platform
+  title: Data Platform
+  description: >
+    Nền tảng dữ liệu của tổ chức — data lake, data warehouse,
+    data pipelines, và analytics infrastructure.
+  tags:
+    - data
+    - analytics
+    - platform
+spec:
+  owner: group:data-team
+  domain: e-commerce
