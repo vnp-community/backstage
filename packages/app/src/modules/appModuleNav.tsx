@@ -27,6 +27,7 @@ import {
 } from '@backstage/core-components';
 import SearchIcon from '@material-ui/icons/Search';
 import MenuIcon from '@material-ui/icons/Menu';
+import LibraryBooks from '@material-ui/icons/LibraryBooks';
 import { createFrontendModule } from '@backstage/frontend-plugin-api';
 import { NavContentBlueprint } from '@backstage/plugin-app-react';
 import { SidebarSearchModal } from '@backstage/plugin-search';
@@ -120,6 +121,7 @@ export const appModuleNav = createFrontendModule({
               <SidebarGroup label="Menu" icon={<MenuIcon />}>
                 {nav.take('page:catalog')}
                 {nav.take('page:scaffolder')}
+                <SidebarItem icon={LibraryBooks} to="/docs" text="Docs" />
                 <SidebarDivider />
                 <SidebarScrollWrapper>
                   {nav.rest({ sortBy: 'title' })}
