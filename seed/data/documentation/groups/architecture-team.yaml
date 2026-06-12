@@ -1,0 +1,14 @@
+apiVersion: backstage.io/v1alpha1
+kind: Group
+metadata:
+  name: architecture-team
+  title: Architecture Team
+  description: Team kiến trúc hệ thống — API design, system design, và technical standards.
+  tags:
+    - architecture
+    - design
+spec:
+  type: team
+  profile:
+    displayName: Architecture Team
+  children: []

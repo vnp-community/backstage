@@ -1,0 +1,14 @@
+apiVersion: backstage.io/v1alpha1
+kind: Group
+metadata:
+  name: backend-team
+  title: Backend Team
+  description: Team phát triển backend services — APIs, microservices, và server-side logic.
+  tags:
+    - backend
+    - development
+spec:
+  type: team
+  profile:
+    displayName: Backend Team
+  children: []

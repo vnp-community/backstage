@@ -1,0 +1,14 @@
+apiVersion: backstage.io/v1alpha1
+kind: Group
+metadata:
+  name: dx-team
+  title: Developer Experience Team
+  description: Team developer experience — onboarding, tools, và developer productivity.
+  tags:
+    - dx
+    - developer-experience
+spec:
+  type: team
+  profile:
+    displayName: Developer Experience Team
+  children: []

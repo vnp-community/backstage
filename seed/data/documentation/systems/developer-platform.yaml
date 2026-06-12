@@ -1,0 +1,13 @@
+apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: developer-platform
+  title: Developer Platform
+  description: Nền tảng phát triển nội bộ — công cụ, tài liệu, templates, và hạ tầng hỗ trợ developer experience.
+  tags:
+    - platform
+    - internal
+    - developer-experience
+spec:
+  owner: group:admin
+  domain: e-commerce

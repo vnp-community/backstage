@@ -1,0 +1,14 @@
+apiVersion: backstage.io/v1alpha1
+kind: Group
+metadata:
+  name: frontend-team
+  title: Frontend Team
+  description: Team phát triển frontend — web applications, UI components, và user experience.
+  tags:
+    - frontend
+    - development
+spec:
+  type: team
+  profile:
+    displayName: Frontend Team
+  children: []

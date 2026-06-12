@@ -1,0 +1,14 @@
+apiVersion: backstage.io/v1alpha1
+kind: Group
+metadata:
+  name: data-team
+  title: Data Engineering Team
+  description: Team kỹ thuật dữ liệu — data pipelines, analytics, và data infrastructure.
+  tags:
+    - data
+    - engineering
+spec:
+  type: team
+  profile:
+    displayName: Data Engineering Team
+  children: []

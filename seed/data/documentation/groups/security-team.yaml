@@ -1,0 +1,14 @@
+apiVersion: backstage.io/v1alpha1
+kind: Group
+metadata:
+  name: security-team
+  title: Security Team
+  description: Team bảo mật — security policies, compliance, và incident response.
+  tags:
+    - security
+    - compliance
+spec:
+  type: team
+  profile:
+    displayName: Security Team
+  children: []
